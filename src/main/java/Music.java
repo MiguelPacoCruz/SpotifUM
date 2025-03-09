@@ -1,0 +1,156 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+import java.util.Arrays;
+
+/**
+ *
+ * @author miguel
+ */
+
+enum Genre{
+    Pop,
+    Rock,
+    Classic,
+}
+
+public class Music {
+    private static int lastId;
+    private final int id;
+    private String name;
+    private String interpreter;
+    private String editor;
+    private String[] lyrics;
+    private String[] music;
+    private Genre genre;
+    private int duration;
+    private int listens;
+
+    public Music(){
+        this.id = ++lastId;
+        this.name = "";
+        this.interpreter = "";
+        this.editor = "";
+        this.lyrics = new String[0];
+        this.music = new String[0];
+        this.genre = null;
+        this.duration = -1;
+        this.listens = -1;
+    }
+
+    public Music(Music m) {
+        this.id = ++lastId;
+        this.name = m.name;
+        this.interpreter = m.interpreter;
+        this.editor = m.editor;
+        this.lyrics = m.lyrics;
+        this.music = m.lyrics;
+        this.genre = m.genre;
+        this.duration = m.duration;
+        this.listens = m.listens;
+    }
+
+    public Music(String name, String interpreter, String editor, String[] lyrics, String[] music, Genre genre, int duration, int listens) {
+        this.id = ++lastId;
+        this.name = name;
+        this.interpreter = interpreter;
+        this.editor = editor;
+        this.lyrics = lyrics;
+        this.music = music;
+        this.genre = genre;
+        this.duration = duration;
+        this.listens = listens;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setinterpreter(String interpreter){
+        this.interpreter = interpreter;
+    }
+
+    public String getinterpreter(){
+        return this.interpreter;
+    }
+
+    public void setEditor(String editor){
+        this.editor = editor;
+    }
+
+    public String getEditor(){
+        return this.editor;
+    }
+
+    public void setLyrics(String[] lyrics){
+        this.lyrics = lyrics;
+    }
+
+    public String[] getLyrics(){
+        return this.lyrics;
+    }
+
+    public void setMusic(String[] music){
+        this.music = music;
+    }
+
+    public String[] getMusic(){
+        return this.music;
+    }
+
+    public void setGenre(Genre genre){
+        this.genre = genre;
+    }
+
+    public Genre getGenre(){
+        return this.genre;
+    }
+
+    public void setDuration(int duration){
+        this.duration = duration;
+    }
+
+    public int getDuration(){
+        return this.duration;
+    }
+
+    public void setListens(int listens){
+        this.listens = listens;
+    }
+
+    public int getListens(){
+        return this.listens;
+    }
+
+    public String toString(){
+        return "Music[id=" + this.id + ", name=" + this.name + ", interpreter="+ this.interpreter + ", editor="+ this.editor + ", lyrics=" + java.util.Arrays.toString(this.lyrics) + ", music=" + java.util.Arrays.toString(this.music) + ", genre=" + this.genre + ", duration=" + this.duration + ", listens=" +this.listens + "]";
+    }
+
+    public Music clone(){
+        return new Music(this);
+    }
+
+    public boolean equals(Object o){
+        if (this == o) return true;
+
+        if (o == null || this.getClass() != o.getClass()) return false;
+
+        Music m = (Music) o;
+        return this.name.equals(m.name) && this.interpreter.equals(m.interpreter) && this.editor.equals(m.editor) && java.util.Arrays.equals(this.lyrics, m.lyrics) && java.util.Arrays.equals(this.music, m.music) && this.genre.equals(m.genre) && this.duration == m.duration && this.listens == m.listens;
+    }
+
+    public void play(){
+        this.listens += 1;
+        System.out.println(Arrays.toString(lyrics));
+    }
+
+}
