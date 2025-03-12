@@ -21,12 +21,12 @@ public class Main {
 //        p.addMusic(m);
 //        System.out.println(p);
 //
-//        User u = new User("Miguel","a108574@uminho.pt","Rua do Macaco, 235",Plan.PremiumTop);
-//        System.out.println(u);
-//        User u2 = new User("José","a1000@uminho.pt","Rua do Brazil, 239",Plan.Free);
-//        System.out.println(u2);
-//        u2.setPlan(Plan.PremiumBase);
-//        System.out.println(u2);
+        User u = new User("Miguel","a108574@uminho.pt","Rua do Macaco, 235",Plan.PremiumTop);
+        System.out.println(u);
+        User u2 = new User("José","a1000@uminho.pt","Rua do Brazil, 239",Plan.Free);
+        System.out.println(u2);
+        u2.setPlan(Plan.PremiumBase);
+        System.out.println(u2);
 
         Scanner scanner = new Scanner(System.in);
 

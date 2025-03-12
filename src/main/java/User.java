@@ -8,11 +8,15 @@
  * @author miguel
  */
 
+// constantes
+
 enum Plan {
     Free,
     PremiumBase,
     PremiumTop,
 }
+
+// metodos de criaçao
 
 public class User {
     private static int lastId = 0; // Static variable to keep track of the last assigned id
@@ -46,6 +50,8 @@ public class User {
         this.address = address;
         this.plan = plan;
     }
+
+    // metodos set/get
 
     public int getId(){
         return this.id;
@@ -82,6 +88,8 @@ public class User {
     public Plan getPlan() {
         return this.plan;
     }
+
+    // metodos obrigatorios
 
     public String toString() {
         return "User[id=" + this.id + ", name=" + this.name + ", email=" + this.email + ", address=" + this.address + ", plan=" + this.plan + "]";

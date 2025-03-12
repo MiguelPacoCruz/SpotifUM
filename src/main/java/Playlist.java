@@ -10,10 +10,12 @@
 public class Playlist {
     private static int lastId;
     private final int id;
-    private int authorId;
+    private  int authorId;
     private Music[] musics;
     private Genre[] genre;
     private int duration;
+
+    // Metodos construtores;
 
     public Playlist(){
         this.id = ++lastId;
@@ -36,6 +38,8 @@ public class Playlist {
         this.genre = genre;
     }
 
+    // Metodos obrigatorios
+
     public boolean equals(Object o){
         if (this == o) return true;
 
@@ -53,6 +57,8 @@ public class Playlist {
     public String toString(){
         return "Playlist[id=" + this.id + ", authorId=" + this.authorId + ", musics=" + java.util.Arrays.toString(this.musics) + ", genre=" + java.util.Arrays.toString(this.genre) + ", duration=" + this.duration + "]";
     }
+
+    // Metodos Set/Get
 
     public int getId(){
         return this.id;
@@ -89,6 +95,8 @@ public class Playlist {
     public int getDuration(){
         return this.duration;
     }
+
+    // metodos
 
     public void addMusic(Music m){
         Music[] newMusics = new Music[this.musics.length + 1];

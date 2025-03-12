@@ -10,13 +10,26 @@ import java.util.Arrays;
  * @author miguel
  */
 
-enum Genre{
+// constantes
+
+enum Genre{  //coloquei mais generos
     Pop,
     Rock,
     Classic,
+    Jazz,
+    Electronic,
+    Rap,
+    Country,
+    Funk
 }
 
+
+
+
 public class Music {
+
+    //variaveis
+
     private static int lastId;
     private final int id;
     private String name;
@@ -27,6 +40,8 @@ public class Music {
     private Genre genre;
     private int duration;
     private int listens;
+
+    // metodos de criaçao
 
     public Music(){
         this.id = ++lastId;
@@ -63,6 +78,8 @@ public class Music {
         this.duration = duration;
         this.listens = listens;
     }
+
+    // metodos set/get
 
     public int getId(){
         return this.id;
@@ -131,6 +148,8 @@ public class Music {
         return this.listens;
     }
 
+    // metodos obrigatorios
+
     public String toString(){
         return "Music[id=" + this.id + ", name=" + this.name + ", interpreter="+ this.interpreter + ", editor="+ this.editor + ", lyrics=" + java.util.Arrays.toString(this.lyrics) + ", music=" + java.util.Arrays.toString(this.music) + ", genre=" + this.genre + ", duration=" + this.duration + ", listens=" +this.listens + "]";
     }
@@ -147,6 +166,8 @@ public class Music {
         Music m = (Music) o;
         return this.name.equals(m.name) && this.interpreter.equals(m.interpreter) && this.editor.equals(m.editor) && java.util.Arrays.equals(this.lyrics, m.lyrics) && java.util.Arrays.equals(this.music, m.music) && this.genre.equals(m.genre) && this.duration == m.duration && this.listens == m.listens;
     }
+
+    // metodos
 
     public void play(){
         this.listens += 1;
