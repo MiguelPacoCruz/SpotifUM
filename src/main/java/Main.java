@@ -21,27 +21,22 @@ public class Main {
 //        p.addMusic(m);
 //        System.out.println(p);
 //
-        User u = new User("Miguel","a108574@uminho.pt","Rua do Macaco, 235",Plan.PremiumTop);
-        System.out.println(u);
-        User u2 = new User("José","a1000@uminho.pt","Rua do Brazil, 239",Plan.Free);
-        System.out.println(u2);
-        u2.setPlan(Plan.PremiumBase);
-        System.out.println(u2);
+        menu();
+    }
 
+    private static void menu(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to SpotifUM!");
         System.out.println("Enter 1 to login, 2 to register, 3 to exit!");
+
         String option = scanner.nextLine();
         switch (option) {
             case "1":
-                System.out.println("Please enter your email:");
-                String mail = scanner.nextLine();
-                // Add logic for login here
+                login(scanner);
                 break;
             case "2":
-                System.out.println("You chose to register.");
-                // Add logic for registration here
+                register(scanner);
                 break;
             case "3":
                 System.out.println("Exiting... Goodbye!");
@@ -49,8 +44,55 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid option. Please try again.");
+                menu();
                 break;
         }
         scanner.close();
+    }
+
+    private static void login(Scanner scanner){
+        System.out.println("Please enter your email:");
+        String mail = scanner.nextLine();
+        if (DataManager.getUserId(mail) == -1) {
+            System.out.println("User not found. Please try again.");
+            menu();
+        }
+        else {
+            System.out.println("Welcome back, " + mail + "!");
+        }
+    }
+
+    private static void register(Scanner scanner){
+        System.out.println("You chose to register.");
+        System.out.println("Please enter your email:");
+        String mail = scanner.nextLine();
+        if (DataManager.getUserId(mail) != -1) {
+            System.out.println("User already exists. Please try again.");
+            menu();
+        }
+        System.out.println("Please enter your name:");
+        String name = scanner.nextLine();
+        System.out.println("Please enter your address:");
+        String address = scanner.nextLine();
+        choosePlan(scanner, name, mail, address);
+        menu();
+    }
+
+    private static void choosePlan(Scanner scanner, String name, String mail, String address){
+        System.out.println("Please choose your plan. Enter 1 for Free, 2 for Premium Base and 3 for Premium Top");
+        String plan = scanner.nextLine();
+        if (plan.equals("1")) {
+            DataManager.addUser(new User(name, mail, address, Plan.Free));
+        }
+        else if (plan.equals("2")) {
+            DataManager.addUser(new User(name, mail, address, Plan.PremiumBase));
+        }
+        else if (plan.equals("3")) {
+            DataManager.addUser(new User(name, mail, address, Plan.PremiumTop));
+        }
+        else {
+            System.out.println("Invalid plan. Please try again.");
+            choosePlan(scanner, name, mail, address);
+        }
     }
 }

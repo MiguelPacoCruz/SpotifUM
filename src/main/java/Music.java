@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -40,6 +45,7 @@ public class Music {
     private Genre genre;
     private int duration;
     private int listens;
+    private boolean explicit;
 
     // metodos de criaçao
 
@@ -53,6 +59,7 @@ public class Music {
         this.genre = null;
         this.duration = -1;
         this.listens = -1;
+        this.explicit = false;
     }
 
     public Music(Music m) {
@@ -65,6 +72,7 @@ public class Music {
         this.genre = m.genre;
         this.duration = m.duration;
         this.listens = m.listens;
+        this.explicit = isExplicit();
     }
 
     public Music(String name, String interpreter, String editor, String[] lyrics, String[] music, Genre genre, int duration, int listens) {
@@ -77,6 +85,7 @@ public class Music {
         this.genre = genre;
         this.duration = duration;
         this.listens = listens;
+        this.explicit = isExplicit();
     }
 
     // metodos set/get
@@ -172,6 +181,31 @@ public class Music {
     public void play(){
         this.listens += 1;
         System.out.println(Arrays.toString(lyrics));
+    }
+    private List<String> loadExplicitWords(String filePath) {
+        List<String> explicitWords = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Add each word from the file to the list
+                explicitWords.add(line.trim().toLowerCase());
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading explicit words file: " + e.getMessage());
+        }
+        return explicitWords;
+    }
+
+    private boolean isExplicit(){
+        List<String> explicitWords = loadExplicitWords("src/main/resources/explicit.txt");
+        for (String lyric : lyrics) {
+            for (String keyword : explicitWords) {
+                if (lyric.toLowerCase().contains(keyword.toLowerCase())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

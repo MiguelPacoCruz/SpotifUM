@@ -43,7 +43,7 @@ public class User {
         this.plan = x.plan;
     }
 
-    public User(String name, String email, String address, Plan plan){
+    public User(String name, String email, String address, Plan plan) {
         this.id = ++lastId;
         this.name = name;
         this.email = email;

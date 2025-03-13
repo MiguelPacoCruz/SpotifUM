@@ -10,7 +10,7 @@
 public class Playlist {
     private static int lastId;
     private final int id;
-    private  int authorId;
+    private int authorId;
     private Music[] musics;
     private Genre[] genre;
     private int duration;
